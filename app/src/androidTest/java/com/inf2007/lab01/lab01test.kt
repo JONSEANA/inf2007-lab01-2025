@@ -39,7 +39,7 @@ class lab01test {
 
         // Enter a name into the TextField
         composeTestRule.onNodeWithTag("nameInput")
-            .performTextInput("John")
+            .performTextInput("Alice")
 
         // Click the Submit button
         composeTestRule.onNodeWithTag("submitButton")

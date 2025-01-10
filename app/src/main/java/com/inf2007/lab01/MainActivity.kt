@@ -49,14 +49,18 @@ fun MainScreen() {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 UserInput(
-                    name = name,
-                    onNameChange = { name = it }
+                    //name = name,
+
+                    name = username,
+                    //pass username instead of name as it is declared in line 41
+                    onNameChange = { username = it }
                 )
 
                 Button(
                     onClick = {
                         if (username.isNotBlank()) {
-                            showGreeting = false
+                            // showGreeting should be true if usernaem is not blank
+                            showGreeting = true
                         }
                     },
                     modifier = Modifier
@@ -67,7 +71,7 @@ fun MainScreen() {
                 }
 
                 if (showGreeting) {
-                    Greeeting(
+                    Greeting(
                         name = username,
                         modifier = Modifier
                             .fillMaxWidth()
@@ -84,21 +88,21 @@ fun MainScreen() {
 fun UserInput(name: String, onNameChange: (String) -> Unit, modifier: Modifier = Modifier) {
     TextField(
         value = name,
-        onValueChange = { onNameChange(it) },
+        onValueChange = onNameChange,
         label = { Text("Enter your Name") },
         modifier = modifier
             .fillMaxWidth()
-            .testTag("UserInput")
+            .testTag("nameInput") // align with lab01test file naming convention
     )
 }
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
-        text = "Hello $username!, Welcome to InF2007!",
+        text = "Hello $name!, Welcome to INF2007!",
         modifier = Modifier
             .fillMaxWidth()
-            .testTag("greeting")
+            .testTag("greetingMsg")
     )
 }
 
